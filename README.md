@@ -17,7 +17,7 @@ This repository contains the necessary files to dockerise Taskflow, an Odoo base
 2. Clone the repository: 
 
 ```
-git clone https://github.com/<your-github-username>/docker-taskflow.git`
+git clone https://github.com/<your-github-username>/docker-taskflow.git
 ```
 
 3. Set up your Odoo configuration:
