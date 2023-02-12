@@ -2,9 +2,6 @@
 
 This repository contains the necessary files to dockerise Taskflow, an Odoo based ERP system. With these files, you can easily run Taskflow in a Docker container, making it easy to install and manage.
 
-## Requirements
-- Docker
-
 ## Installation
 
 1. Install Docker:
