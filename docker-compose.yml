@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  db:
+    image: postgres:14
+    user: postgres
+    container_name: postgres14
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+  odoo:
+    image: taskflow-odoo:12
+    container_name: odoo12
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./odoo.conf:/etc/odoo/odoo.conf
