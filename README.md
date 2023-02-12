@@ -34,7 +34,7 @@ docker-compose up
 ## Usage
 Once the Docker containers are up and running, you can access Taskflow by opening a web browser and navigating to `http://localhost:8069`.
 
-## Stopping the Docker containers
+## Stopping the containers
 You can stop the Docker containers by running the following command in the repository root:
 
 ```
