@@ -1,8 +1,8 @@
 # Taskflow-docker
 
-This repository contains the necessary files to dockerise Taskflow, an Odoo based ERP system. With these files, you can easily run Taskflow in a Docker container, making it easy to install and manage.
+This repository contains the necessary files to dockerise Taskflow, an Odoo based ERP system. With these files, you can easily run Taskflow in a Docker container, making it easy to install and manage during development.
 
-## Installation
+# Installation
 
 1. Install Docker:
   - On Windows:
@@ -28,7 +28,7 @@ cd docker-taskflow
 docker-compose up
 ```
 
-## Usage
+# Usage
 Once the Docker containers are up and running, you can access Taskflow by opening a web browser and navigating to `http://localhost:8069`.
 
 ## Stopping the containers
@@ -38,6 +38,8 @@ You can stop the Docker containers by running the following command in the repos
 docker-compose down
 ```
 
+> Note: This command will delete all data created in the database. **Stop and restart** the Odoo container if a restart is required.
+
 ## Accessing the Shell
 To access the Odoo shell, run the following command:
 
@@ -45,10 +47,51 @@ To access the Odoo shell, run the following command:
 docker exec -it odoo12 bash -c "odoo shell"
 ```
 
+## Accessing the file system
+
+```
+docker exec -it odoo12 /bin/bash
+```
+
+>Note: The docker image uses the nightly build. The Odoo source code can be found in here: 
+>
+>```
+>cd /usr/lib/python3/dist-packages/odoo
+>```
+
 ## Stopping & restarting Odoo:
 
 ```
 docker stop odoo12
-docker start -a odoo12
+docker start odoo12
 ```
+
+>Attach to the terminal output
+>
+>```
+>docker start -a odoo12
+>```
+
+## Installing/Updating a module via the command line
+Edit the command line in the `docker-compose.yml` file to set the command that will be executed when Odoo is started.
+
+```
+  odoo:
+    image: taskflow-odoo:12
+    container_name: odoo12
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./odoo.conf:/etc/odoo/odoo.conf
+    command: odoo -i web_flow,crm -d localhost <-- Edit this line
+```
+
+Run the following command to update the instance:
+
+```
+docker compose up
+```
+
 
