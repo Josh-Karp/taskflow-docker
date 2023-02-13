@@ -17,3 +17,4 @@ services:
       - "8069:8069"
     volumes:
       - ./odoo.conf:/etc/odoo/odoo.conf
+    command: odoo -i web_flow,crm -d localhost
