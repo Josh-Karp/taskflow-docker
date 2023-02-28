@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:stretch-slim
 
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 
@@ -18,9 +18,8 @@ RUN apt-get update \
     dirmngr \
     fonts-noto-cjk \
     gnupg \
-    libssl-dev \
+    libssl1.0-dev \
     node-less \
-    npm \
     python3-num2words \
     python3-pip \
     python3-phonenumbers \
@@ -97,23 +96,13 @@ RUN chown -R odoo /mnt/taskflow \
     && chown -R odoo /mnt/taskflow-config
 VOLUME ["/mnt/taskflow", "/mnt/taskflow-config"]
 
-# Taskflow deps
+# Taskflow dependencies
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     python3-dev \
     build-essential \
     gcc \
-    libxml2-dev \
-    libxslt1-dev \
-    libldap2-dev \
-    libsasl2-dev \
-    libffi-dev \
-    libjpeg-dev \
-    zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
-
-RUN pip3 install --upgrade pip \
-    && pip3 install --no-cache-dir -r /mnt/taskflow/requirements_2.txt
 
 # Expose Odoo services
 EXPOSE 8069 8071 8072

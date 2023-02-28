@@ -15,6 +15,9 @@ services:
       - db
     ports:
       - "8069:8069"
-    volumes:
-      - ./odoo.conf:/etc/odoo/odoo.conf
-    command: odoo -i web_flow,crm -d localhost
+    environment:
+    - HOST=db
+    - USER=odoo
+    - PASSWORD=odoo
+    command: odoo -i web_flow,l10n_us_bank,crm,api_ocrolus,credit_report_us -d localhost
+    
