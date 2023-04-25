@@ -94,4 +94,23 @@ Run the following command to update the instance:
 docker compose up
 ```
 
+## Building the docker containers
+The following repositories must be present in your working directory:
 
+- taskflow-config
+- taskflow
+
+Once the above repositories have been cloned to your working directory, the structure should be as follows:
+
+```
+  > {WORKING_DIRECTORY}
+    > taskflow
+    > taskflow-config
+    > taskflow-docker
+```
+
+To build the Postgres and Odoo container, run the following command from your working directory:
+
+```
+docker build -t taskflow-odoo:12 -f ./taskflow-docker/12.0/Dockerfile .
+```
