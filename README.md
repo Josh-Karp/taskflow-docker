@@ -44,7 +44,7 @@ docker-compose down
 To access the Odoo shell, run the following command:
 
 ```
-docker exec -it odoo12 bash -c "odoo shell"
+docker exec -it odoo12 bash -c "odoo shell -d localhost --db_host db --db_password odoo"
 ```
 
 ## Accessing the file system
