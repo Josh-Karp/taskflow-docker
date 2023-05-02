@@ -114,3 +114,17 @@ To build the Postgres and Odoo container, run the following command from your wo
 ```
 docker build -t taskflow-odoo:12 -f ./taskflow-docker/12.0/Dockerfile .
 ```
+
+## Setup a demo instance
+The **backd-web-demo.sh** script quickly sets up a basic demo instance of the Taskflow instance for Backd.com.
+
+>Note: The script does not disable the module demo loaders. If the Odoo container is restarted, demo data may be created again. Rerun the script to ensure that the instance has the correct setup.
+
+Run the following commands to setup the demo instance:
+
+```
+docker compose up
+bash ./backd-web-demo.sh -client_id {PLAID_CLIENT_ID} -secret {PLAID_SECRET}
+```
+
+>Note: The operating system may need to be configured to run bash files.
