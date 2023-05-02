@@ -9,15 +9,14 @@ services:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
   odoo:
-    image: taskflow-odoo:12
+    image: joshkarp/taskflow-odoo:12
     container_name: odoo12
     depends_on:
       - db
     ports:
       - "8069:8069"
     environment:
-    - HOST=db
-    - USER=odoo
-    - PASSWORD=odoo
-    command: odoo -i web_flow,l10n_us_bank,crm,api_ocrolus,credit_report_us -d localhost
-    
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+    command: odoo -i web_flow,l10n_us_bank,crm,api_ocrolus,credit_report_us,api_ocrolus_crm,api_plaid_ocrolus,api_datamerch,config_backd -d localhost

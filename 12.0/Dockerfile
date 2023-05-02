@@ -6,12 +6,13 @@ SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 ENV LANG C.UTF-8
 
 # Use backports to avoid install some libs with pip
-RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/backports.list
+RUN echo 'deb http://archive.debian.org/debian-archive/debian stretch-backports main' > /etc/apt/sources.list.d/backports.list
 
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     git \
+    openssh-client \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -113,6 +114,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --upgrade pip \
+    && pip3 install --no-cache-dir debugpy \
     && pip3 install --no-cache-dir -r /mnt/taskflow/requirements_2.txt
 
 # Expose Odoo services
