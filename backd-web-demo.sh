@@ -78,8 +78,8 @@ for default_stage in default_stages:
         print("Default stage {} removed successfully".format(default_stage))
 
 # Add demo users
-if (env['res.users'].search([('login', '=', 'demo')])) == 0:
-    env['res.users'].create({'name': 'Demo User', 'login': 'demo', 'password': 'demo'})
+if len((env['res.users'].search([('login', '=', 'joshua@taskflow.co.za')]))) == 0:
+    env['res.users'].create({'name': 'Joshua Karp', 'login': 'joshua@taskflow.co.za', 'password': 'demo'})
     env.cr.commit()
     print("Demo user created successfully")
 
@@ -102,7 +102,3 @@ print("Demo instance updated successfully")
 exit()
 
 EOF
-
-# Restart Odoo container
-docker stop odoo12
-docker start odoo12
